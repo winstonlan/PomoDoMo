@@ -10,11 +10,8 @@ import UIKit
 
 class TimerViewController: UIViewController {
     
-    var breakTime = false
-    var minutesRemaining = 2
-    var secondsRemaining = 0
-    
     var timer = Timer()
+    var pomo = Pomodoro()
     
     @IBOutlet weak var minutesLabel: UILabel!
     @IBOutlet weak var secondsLabel: UILabel!
@@ -28,61 +25,62 @@ class TimerViewController: UIViewController {
             startButton.setTitle("RESET", for: [])
         } else {
             startButton.setTitle("START", for: [])
-            minutesRemaining = 2
-            secondsRemaining = 0
+            pomo.minutesRemaining = pomo.workTime
+            pomo.secondsRemaining = 0
+            
+            timer.invalidate()
+            pomo.isWorking = false
+            
             updateMinuteLabel()
             updateSecondsLabel()
-            timer.invalidate()
         }
     }
     
     
     func action() {
-        if minutesRemaining == 0 && secondsRemaining == 0 {
-            if !breakTime {
-                print("START BREAK")
-                breakTime = true
-                minutesRemaining = 1
-                secondsRemaining = 0
+        if pomo.minutesRemaining == 0 && pomo.secondsRemaining == 0 {
+            if pomo.isWorking {
+                pomo.isWorking = false
+                pomo.minutesRemaining = pomo.breakTime
+                pomo.secondsRemaining = 0
                 statusLabel.text = "BREAK"
                 
             } else {
-                print("START WORK")
-                breakTime = false
-                minutesRemaining = 2
-                secondsRemaining = 0
+                pomo.isWorking = true
+                pomo.minutesRemaining = pomo.workTime
+                pomo.secondsRemaining = 0
                 statusLabel.text = "WORK"
             }
             
             updateMinuteLabel()
             updateSecondsLabel()
             
-        } else if secondsRemaining == 0 {
-            minutesRemaining -= 1
-            secondsRemaining = 59
+        } else if pomo.secondsRemaining == 0 {
+            pomo.minutesRemaining -= 1
+            pomo.secondsRemaining = 59
             
             updateMinuteLabel()
             updateSecondsLabel()
             
         } else {
-            secondsRemaining -= 1
+            pomo.secondsRemaining -= 1
             updateSecondsLabel()
         }
     }
     
     func updateMinuteLabel() {
-        if minutesRemaining < 10 {
-            minutesLabel.text = "0\(minutesRemaining)"
+        if pomo.minutesRemaining < 10 {
+            minutesLabel.text = "0\(pomo.minutesRemaining)"
         } else {
-            minutesLabel.text = "\(minutesRemaining)"
+            minutesLabel.text = "\(pomo.minutesRemaining)"
         }
     }
     
     func updateSecondsLabel() {
-        if secondsRemaining < 10 {
-            secondsLabel.text = "0\(secondsRemaining)"
+        if pomo.secondsRemaining < 10 {
+            secondsLabel.text = "0\(pomo.secondsRemaining)"
         } else {
-            secondsLabel.text = "\(secondsRemaining)"
+            secondsLabel.text = "\(pomo.secondsRemaining)"
         }
     }
 }

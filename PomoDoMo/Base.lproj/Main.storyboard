@@ -22,36 +22,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOU-ho-6tt">
-                                <rect key="frame" x="196" y="172" width="22" height="119.66666666666669"/>
+                                <rect key="frame" x="196" y="175" width="22" height="120"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg0-5r-3xf">
-                                <rect key="frame" x="226.00000000000003" y="180" width="121.66666666666671" height="119.66666666666669"/>
+                                <rect key="frame" x="226" y="176.66666666666669" width="122" height="120.00000000000006"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="no1-Hf-tGG">
-                                <rect key="frame" x="70.666666666666657" y="180.66666666666669" width="116.99999999999997" height="120.00000000000006"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="no1-Hf-tGG">
+                                <rect key="frame" x="72" y="177.33333333333331" width="116" height="119.99999999999994"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-ai-lsm">
+                                <rect key="frame" x="172" y="153.66666666666663" width="70" height="29.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-MG-O6A">
-                                <rect key="frame" x="183.66666666666666" y="353" width="47" height="30"/>
+                                <rect key="frame" x="176.66666666666666" y="350" width="61" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="START"/>
                                 <connections>
                                     <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5W-Of-aJY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-ai-lsm">
-                                <rect key="frame" x="172.66666666666666" y="151" width="70" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -64,7 +65,7 @@
                             <constraint firstItem="BOU-ho-6tt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gGu-QJ-IHO"/>
                             <constraint firstItem="BOU-ho-6tt" firstAttribute="top" secondItem="l3W-ai-lsm" secondAttribute="bottom" constant="-8" id="l6j-ww-nYY"/>
                             <constraint firstItem="2lX-MG-O6A" firstAttribute="top" secondItem="qg0-5r-3xf" secondAttribute="bottom" constant="53.333333333333314" id="vbI-7s-U7v"/>
-                            <constraint firstItem="2lX-MG-O6A" firstAttribute="top" secondItem="BOU-ho-6tt" secondAttribute="bottom" constant="61.333333333333314" id="zDV-Zy-Fns"/>
+                            <constraint firstItem="2lX-MG-O6A" firstAttribute="top" secondItem="BOU-ho-6tt" secondAttribute="bottom" constant="55" id="zDV-Zy-Fns"/>
                         </constraints>
                     </view>
                     <connections>
