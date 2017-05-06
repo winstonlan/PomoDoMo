@@ -10,63 +10,80 @@ import UIKit
 
 class TimerViewController: UIViewController {
     
-    var minutesRemaining = 25
+    var breakTime = false
+    var minutesRemaining = 2
     var secondsRemaining = 0
     
     var timer = Timer()
     
     @IBOutlet weak var minutesLabel: UILabel!
     @IBOutlet weak var secondsLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
+    
     
     @IBAction func startButton(_ sender: Any) {
         if !(timer.isValid) {
-//            minutesLabel.text = "\(minutesRemaining)"
-//            secondsLabel.text = "\(secondsRemaining)"
-            
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerViewController.action), userInfo: nil, repeats: true)
+            startButton.setTitle("RESET", for: [])
+        } else {
+            startButton.setTitle("START", for: [])
+            minutesRemaining = 2
+            secondsRemaining = 0
+            updateMinuteLabel()
+            updateSecondsLabel()
+            timer.invalidate()
         }
     }
     
-    @IBAction func stopButton(_ sender: Any) {
-        timer.invalidate()
-    }
     
     func action() {
         if minutesRemaining == 0 && secondsRemaining == 0 {
-            print("DONE")
-            timer.invalidate()
+            if !breakTime {
+                print("START BREAK")
+                breakTime = true
+                minutesRemaining = 1
+                secondsRemaining = 0
+                statusLabel.text = "BREAK"
+                
+            } else {
+                print("START WORK")
+                breakTime = false
+                minutesRemaining = 2
+                secondsRemaining = 0
+                statusLabel.text = "WORK"
+            }
+            
+            updateMinuteLabel()
+            updateSecondsLabel()
+            
         } else if secondsRemaining == 0 {
             minutesRemaining -= 1
-            secondsRemaining = 60
+            secondsRemaining = 59
             
-            if minutesRemaining < 10 {
-                minutesLabel.text = "0\(minutesRemaining)"
-            } else {
-                 minutesLabel.text = "\(minutesRemaining)"
-            }
+            updateMinuteLabel()
+            updateSecondsLabel()
             
-            secondsLabel.text = "00"
         } else {
             secondsRemaining -= 1
-            
-            if secondsRemaining < 10 {
-                secondsLabel.text = "0\(secondsRemaining)"
-            } else {
-                secondsLabel.text = "\(secondsRemaining)"
-            }
+            updateSecondsLabel()
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    func updateMinuteLabel() {
+        if minutesRemaining < 10 {
+            minutesLabel.text = "0\(minutesRemaining)"
+        } else {
+            minutesLabel.text = "\(minutesRemaining)"
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func updateSecondsLabel() {
+        if secondsRemaining < 10 {
+            secondsLabel.text = "0\(secondsRemaining)"
+        } else {
+            secondsLabel.text = "\(secondsRemaining)"
+        }
     }
-
-
 }
 
