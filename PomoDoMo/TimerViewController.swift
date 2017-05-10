@@ -44,7 +44,13 @@ class TimerViewController: UIViewController {
                 let newPomoCount = UserDefaults.standard.integer(forKey: "pomoCount") + 1
                 UserDefaults.standard.set(newPomoCount, forKey:"pomoCount")
                 pomo.isWorking = false
-                pomo.minutesRemaining = pomo.breakTime
+                
+                if newPomoCount % 3 == 0 {
+                    pomo.minutesRemaining = 15
+                } else {
+                    pomo.minutesRemaining = pomo.breakTime
+                }
+                
                 pomo.secondsRemaining = 0
                 statusLabel.text = "BREAK"
                 pomoCountLabel.text = "\(UserDefaults.standard.integer(forKey: "pomoCount"))"
@@ -88,6 +94,12 @@ class TimerViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let date = Date()
+        let calendar = Calendar.current
+        let newDate = calendar.startOfDay(for: date)
+        if date == newDate {
+            UserDefaults.standard.set(0, forKey: "pomoCount")
+        }
         pomoCountLabel.text = "\(UserDefaults.standard.integer(forKey: "pomoCount"))"
     }
     
