@@ -17,6 +17,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var pomoCountLabel: UILabel!
     
     
     @IBAction func startButton(_ sender: Any) {
@@ -40,11 +41,13 @@ class TimerViewController: UIViewController {
     func action() {
         if pomo.minutesRemaining == 0 && pomo.secondsRemaining == 0 {
             if pomo.isWorking {
+                let newPomoCount = UserDefaults.standard.integer(forKey: "pomoCount") + 1
+                UserDefaults.standard.set(newPomoCount, forKey:"pomoCount")
                 pomo.isWorking = false
                 pomo.minutesRemaining = pomo.breakTime
                 pomo.secondsRemaining = 0
                 statusLabel.text = "BREAK"
-                
+                pomoCountLabel.text = "\(UserDefaults.standard.integer(forKey: "pomoCount"))"
             } else {
                 pomo.isWorking = true
                 pomo.minutesRemaining = pomo.workTime
@@ -83,5 +86,10 @@ class TimerViewController: UIViewController {
             secondsLabel.text = "\(pomo.secondsRemaining)"
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        pomoCountLabel.text = "\(UserDefaults.standard.integer(forKey: "pomoCount"))"
+    }
+    
 }
 
